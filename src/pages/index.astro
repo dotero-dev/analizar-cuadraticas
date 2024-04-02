@@ -1,5 +1,5 @@
 ---
-
+import '@fontsource/poppins';
 ---
 
 <html lang="en">
@@ -8,9 +8,45 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Analizar cuadráticas</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="px-8 py-4 bg-principal-white text-principal-white">
+		<header class="flex gap-x-8">
+			<section class="w-full h-auto bg-principal-purple px-12 py-8 rounded-lg">
+				<h1 class="text-4xl font-semibold ">Analizador de funciones cuadráticas</h1>	
+			</section>
+			<section class="px-12 py-8 bg-principal-blue rounded-lg w-full">
+				<div>
+					<p class="text-md">
+						Introduce los coeficientes de la ecuación general (y = ax^2 + bx+ c)
+					</p>
+				</div>
+				<div class="flex justify-between mt-4">
+					<div class="flex gap-x-6">
+						<div class="text-lg">
+							a = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+						</div>
+						<div class="text-lg">
+							b = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+						</div>
+						<div class="text-lg">
+							c = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+						</div>
+					</div>
+					<div>
+						<button class="h-10 px-2 text-principal-black bg-principal-white rounded-md">
+							¡Analizar!
+						</button>
+					</div>
+				</div>
+			</section>
+		</header>
 	</body>
 </html>
+
+
+<style is:global>
+	html{
+		font-family: "Poppins", system-ui, sans-serif;
+	}
+</style>
