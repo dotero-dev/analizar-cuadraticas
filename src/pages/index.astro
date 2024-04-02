@@ -2,45 +2,260 @@
 import '@fontsource/poppins';
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Analizar cuadráticas</title>
+		<script src="https://fred-wang.github.io/mathml.css/mspace.js"></script>
+		<link
+		rel="stylesheet"
+		href="https://fred-wang.github.io/MathFonts/STIX/mathfonts.css" />
+
 	</head>
-	<body class="px-8 py-4 bg-principal-white text-principal-white">
-		<header class="flex gap-x-8">
+	<body class="px-8 py-4 bg-principal-white text-principal-white h-full">
+		<header class="flex gap-x-6">
 			<section class="w-full h-auto bg-principal-purple px-12 py-8 rounded-lg">
 				<h1 class="text-4xl font-semibold ">Analizador de funciones cuadráticas</h1>	
 			</section>
 			<section class="px-12 py-8 bg-principal-blue rounded-lg w-full">
 				<div>
 					<p class="text-md">
-						Introduce los coeficientes de la ecuación general (y = ax^2 + bx+ c)
+						Introduce los coeficientes de la ecuación general (y = ax<sup>2</sup> + bx+ c)
 					</p>
 				</div>
 				<div class="flex justify-between mt-4">
 					<div class="flex gap-x-6">
 						<div class="text-lg">
-							a = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+							a = <input type="number" id="input1" class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
 						</div>
 						<div class="text-lg">
-							b = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+							b = <input type="number" id="input2" class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
 						</div>
 						<div class="text-lg">
-							c = <input class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
+							c = <input type="number" id="input3" class="h-10 w-10 px-1 text-principal-black bg-principal-white rounded-md"/>
 						</div>
 					</div>
 					<div>
-						<button class="h-10 px-2 text-principal-black bg-principal-white rounded-md">
+						<button type="submit" class="h-10 px-2 text-principal-black bg-principal-white rounded-md">
 							¡Analizar!
 						</button>
 					</div>
 				</div>
 			</section>
 		</header>
+		<main class="h-full w-full mt-6">
+			<!-- Valor de a, vértice, puntos de corte con los ejes, tabla de valores y ¿gráfica? -->
+			<section class="px-6 py-4 rounded-lg w-full bg-principal-cyan">
+				<!-- Para conocer el valor de a y su relación con la apertura de la parábola debes introducir los datos anteriormente. -->
+				<!-- Valor de a y relación con la apertura de la parábola -->
+				El valor de a es a, que es mayor que 0, por lo que la parábola está abierta hacia arriba.
+			</section>
+			<section class="flex h-full mt-6 gap-x-6">
+				<article class="bg-principal-purple-two h-auto px-6 py-4 rounded-lg items-center text-center justify-center flex">
+					<div class="bg-principal-purple-two w-full px-6 py-4 rounded-lg items-center text-center justify-center hidden mb-6 h-auto not-ready">
+						Para calcular el vértice debes introducir los datos anteriormente.
+					</div>
+					<div class="bg-principal-purple-two px-2 py-2 ready" id="plot"></div>
+				</article>
+				<article class="bg-principal-purple-two h-auto w-full px-6 py-4 rounded-lg items-center text-center justify-center flex">
+					<div id="not-ready" class="hidden">
+						Para calcular los puntos de corte con los ejes debes introducir los datos anteriormente.
+					</div>
+					<div id="ready">
+						Punto(s) de corte con el eje x (y = 0):
+						<math class="my-6" display="block">
+							<mi>0</mi>
+							<mo>=</mo>
+							<!-- Sustituir valores de a, b y c -->
+							<mn>a</mn>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+							<!-- Signo de b -->
+							<mo>+</mo>
+							<mn>b</mn>
+							<mi>x</mi>
+							<!-- signo de c -->
+							<mo>+</mo>
+							<mn>c</mn>
+							<mo>&#8658;</mo>
+							<mrow>
+							<mi>x</mi>
+							<mo>=</mo>
+							<!-- sustituir valores de a, b, c -->
+							<mfrac>
+								<mrow>
+								<mo>-</mo>
+								<mi>b</mi>
+								<mo>±</mo>
+								<msqrt>
+									<mrow>
+									<msup>
+										<mi>b</mi>
+										<mn>2</mn>
+									</msup>
+									<mo>-</mo>
+									<mn>4</mn>
+									<mi>a</mi>
+									<mi>c</mi>
+									</mrow>
+								</msqrt>
+								</mrow>
+								<mrow>
+								<mn>2</mn>
+								<mi>a</mi>
+								</mrow>
+							</mfrac>
+							<mo>=</mo>
+							<mn>x1</mn>
+							<mo>o</mo>
+							<mn>x2</mn>
+							</mrow>
+						</math>
+						<!-- coordenadas y especificacr cuaántos hay -->
+						El/los puntos de corte con el eje x son (x,y) y (x,y)
+						<hr class="my-4">
+						Punto(s) de corte con el eje y (x = 0):
+						<math class="my-6" display="block">
+							<msub>
+								<mi>y</mi>
+							</msub>
+							<mo>=</mo>
+							<mrow>
+								<!-- valor de a -->
+								<mi>a</mi>
+								<msup>
+									<mn>0</mn>
+									<mn>2</mn>
+								</msup>
+							</mrow>
+							<!-- signo de b -->
+							<mo>+</mo>
+							<mrow>
+								<!-- valor de b -->
+								<mi>b</mi>
+								<mn>0</mn>
+							</mrow>
+							<!-- signo de c -->
+							<mo>+</mo>
+							<!-- valor de c -->
+							<mi>c</mi>
+							<mo>=</mo>
+							<!-- valor de c -->
+							<mi>c</mi>
+						</math>
+						<!-- coordenadas -->
+						El punto de corte con el eje y se encuentra en el punto (x, y)
+					</div>
+				</article>
+				<article class="h-full">
+					<div class="bg-principal-purple-two w-full px-6 py-4 rounded-lg items-center text-center justify-center hidden mb-6 h-auto not-ready">
+						Para calcular el vértice debes introducir los datos anteriormente.
+					</div>
+					<div  class="bg-principal-purple-two w-full px-6 py-4 rounded-lg items-center text-center mb-6 h-autoready">
+						<p>
+							Valor del vértice:
+						</p>
+						
+						<math display="block" class="mt-6">
+							<msub>
+								<mi>x</mi>
+								<mn>v</mn>
+							</msub>
+							<mo>=</mo>
+							<mfrac>
+							<mrow>
+								<mo>-</mo>
+								<mi>b</mi>
+							</mrow>
+							<mrow>
+								<mn>2</mn>
+								<mi>a</mi>
+							</mrow>
+							</mfrac>
+							<mo>=</mo>
+							<mfrac>
+								<mrow>
+									<mo>-</mo>
+									<!-- Valor de b -->
+									<mi>b</mi>
+								</mrow>
+								<mrow>
+									<mn>2</mn>
+									<!-- Valor de a -->
+									<mi>a</mi>
+								</mrow>
+								</mfrac>
+							<mo>=</mo>
+							<!-- valor de x para el vértice -->
+							<mi>x</mi>
+						</math>
+
+						<math class="my-6" display="block">
+							<msub>
+								<mi>y</mi>
+								<mn>v</mn>
+							</msub>
+							<mo>=</mo>
+							<mrow>
+								<!-- valor de a -->
+								<mi>a</mi>
+								<msup>
+									<mi>x</mi>
+									<mn>2</mn>
+								</msup>
+							</mrow>
+							<!-- signo de b -->
+							<mo>+</mo>
+							<mrow>
+								<!-- valor de b -->
+								<mi>b</mi>
+								<mi>x</mi>
+							</mrow>
+							<!-- signo de c -->
+							<mo>+</mo>
+							<!-- valor de c -->
+							<mi>c</mi>
+							<mo>=</mo>
+							<!-- valor de y para el vértice -->
+							<mi>y</mi>
+						</math>
+						<p>
+							<!-- Coordenadas del vértice -->
+							El vértice se encuentra en el punto (x, y)
+						</p>
+					</div>
+					<div class="bg-principal-purple-two w-full px-6 py-4 rounded-lg items-center text-center justify-center hidden h-auto not-ready">
+						Para calcular la tabla de valores debes introducir los datos anteriormente.
+					</div>
+					<div class="bg-principal-purple-two w-full px-6 py-4 rounded-lg items-center text-center justify-center flex h-fullready">
+						<table class="[&>tr>th]:border">
+							<tr class="[&>td]:px-2 [&>th]:border [&>td]:border">
+							  <th class="px-2">x</th>
+							  <td>10</td>
+							  <td>10</td>
+							  <td>xv</td>
+							  <td>10</td>
+							  <td>10</td>
+							</tr>
+							<tr class="[&>td]:px-2 [&>th]:border [&>td]:border">
+							  <th>y</th>
+							  <td>10</td>
+							  <td>10</td>
+							  <td>yv</td>
+							  <td>10</td>
+							  <td>10</td>
+							</tr>
+						  </table>
+					</div>
+					
+				</article>
+			</section>
+		</main>
 	</body>
 </html>
 
@@ -50,3 +265,28 @@ import '@fontsource/poppins';
 		font-family: "Poppins", system-ui, sans-serif;
 	}
 </style>
+
+<script>
+	import functionPlot from "function-plot";
+	
+	function draw() {
+    try {
+      functionPlot({
+        target: '#plot',
+        data: [{
+          fn: "x^2",
+          sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
+          graphType: 'polyline'
+        }]
+      });
+    }
+    catch (err) {
+      console.log(err);
+      alert(err);
+    }
+  }
+
+  draw();
+
+  
+</script>

@@ -1,0 +1,84 @@
+<head>
+    <script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+<input type="number" id="input1">
+<input type="number" id="input2">
+<input type="number" id="input3">
+<button onclick="recogerDatos()">Enviar</button>
+
+<script>
+
+function recogerDatos() {
+    const a = parseInt(document.getElementById("input1").value);
+    const b = parseInt(document.getElementById("input2").value);
+    const c = parseInt(document.getElementById("input3").value);
+
+    // Valor de a y relación con la apertura de la parábola
+
+    console.log("Identificación de a:")
+    if (a > 0) {
+    console.log(`El valor de a es ${a}, mayor que 0, por lo que la parábola está abierta hacia arriba.`)
+    } else {
+    console.log(`El valor de a es ${a}, menor que 0, por lo que la parábola está abierta hacia abajo.`)
+    }
+
+    // Cálculo del vértice
+
+    console.log("\nCálculo del vértice:")
+    const x_v = -b / (2 * a)
+    const y_v = a * x_v * x_v + b * x_v + c
+    console.log(a,b,c,x_v*x_v, c + a * x_v * x_v + b * x_v)
+    console.log(`El vértice se encuentra en el punto (${x_v}, ${y_v}).`)
+
+    // Puntos de corte con los ejes de coordenadas
+
+    console.log("\nPunto(s) de corte con el eje x:")
+    discriminante = b * b - 4 * a * c
+    if (discriminante > 0) {
+        x_primero = (-b + discriminante) / (2 * a)
+        x_segundo = (-b - discriminante) / (2 * a)
+        console.log(`Hay dos puntos de corte con el eje x que son (${x_primero}, 0) y (${x_segundo}, 0).`)
+    } else if (discriminante < 0) {
+        console.log("No hay puntos de corte con el eje x.")
+    } else {
+        x = -b / (2 * a)
+        console.log(`Hay un punto de corte con el eje x que es (${x}, 0).`)
+    }
+    
+    console.log("\nPunto de corte con el eje y:")
+    y = c
+    console.log(`El punto de corte con el eje y es (0,${y})`)
+
+    // Tabla de valores
+    
+    console.log("\nTabla de valores:")
+    for (let i = -2; i < 3; i++){
+        x_i = x_v + i
+        console.log(typeof(x_i))
+        y_i = a * x_i *x_i + b * x_i + c
+        console.log(`(${x_i}, ${y_i})`)
+    }
+    function draw() {
+    try {
+      functionPlot({
+        target: '#plot',
+        data: [{
+          fn: "x^2",
+          sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
+          graphType: 'polyline'
+        }]
+      });
+    }
+    catch (err) {
+      console.log(err);
+      alert(err);
+    }
+  }
+
+  draw();
+}
+	
+</script>
+</body>
